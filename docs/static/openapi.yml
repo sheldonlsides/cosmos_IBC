@@ -20516,6 +20516,8 @@ definitions:
     type: object
   sheldonlsides.planet.blog.MsgDeleteTimedoutPostResponse:
     type: object
+  sheldonlsides.planet.blog.MsgSendIbcPostResponse:
+    type: object
   sheldonlsides.planet.blog.MsgUpdatePostResponse:
     type: object
   sheldonlsides.planet.blog.MsgUpdateSentPostResponse:

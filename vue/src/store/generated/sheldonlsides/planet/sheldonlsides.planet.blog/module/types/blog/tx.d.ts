@@ -68,6 +68,16 @@ export interface MsgDeleteTimedoutPost {
 }
 export interface MsgDeleteTimedoutPostResponse {
 }
+export interface MsgSendIbcPost {
+    creator: string;
+    port: string;
+    channelID: string;
+    timeoutTimestamp: number;
+    title: string;
+    content: string;
+}
+export interface MsgSendIbcPostResponse {
+}
 export declare const MsgCreatePost: {
     encode(message: MsgCreatePost, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): MsgCreatePost;
@@ -194,6 +204,20 @@ export declare const MsgDeleteTimedoutPostResponse: {
     toJSON(_: MsgDeleteTimedoutPostResponse): unknown;
     fromPartial(_: DeepPartial<MsgDeleteTimedoutPostResponse>): MsgDeleteTimedoutPostResponse;
 };
+export declare const MsgSendIbcPost: {
+    encode(message: MsgSendIbcPost, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgSendIbcPost;
+    fromJSON(object: any): MsgSendIbcPost;
+    toJSON(message: MsgSendIbcPost): unknown;
+    fromPartial(object: DeepPartial<MsgSendIbcPost>): MsgSendIbcPost;
+};
+export declare const MsgSendIbcPostResponse: {
+    encode(_: MsgSendIbcPostResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgSendIbcPostResponse;
+    fromJSON(_: any): MsgSendIbcPostResponse;
+    toJSON(_: MsgSendIbcPostResponse): unknown;
+    fromPartial(_: DeepPartial<MsgSendIbcPostResponse>): MsgSendIbcPostResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     CreatePost(request: MsgCreatePost): Promise<MsgCreatePostResponse>;
@@ -204,8 +228,9 @@ export interface Msg {
     DeleteSentPost(request: MsgDeleteSentPost): Promise<MsgDeleteSentPostResponse>;
     CreateTimedoutPost(request: MsgCreateTimedoutPost): Promise<MsgCreateTimedoutPostResponse>;
     UpdateTimedoutPost(request: MsgUpdateTimedoutPost): Promise<MsgUpdateTimedoutPostResponse>;
-    /** this line is used by starport scaffolding # proto/tx/rpc */
     DeleteTimedoutPost(request: MsgDeleteTimedoutPost): Promise<MsgDeleteTimedoutPostResponse>;
+    /** this line is used by starport scaffolding # proto/tx/rpc */
+    SendIbcPost(request: MsgSendIbcPost): Promise<MsgSendIbcPostResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
@@ -219,6 +244,7 @@ export declare class MsgClientImpl implements Msg {
     CreateTimedoutPost(request: MsgCreateTimedoutPost): Promise<MsgCreateTimedoutPostResponse>;
     UpdateTimedoutPost(request: MsgUpdateTimedoutPost): Promise<MsgUpdateTimedoutPostResponse>;
     DeleteTimedoutPost(request: MsgDeleteTimedoutPost): Promise<MsgDeleteTimedoutPostResponse>;
+    SendIbcPost(request: MsgSendIbcPost): Promise<MsgSendIbcPostResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

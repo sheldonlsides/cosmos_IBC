@@ -13,6 +13,7 @@ export interface BlogMsgCreateTimedoutPostResponse {
 export declare type BlogMsgDeletePostResponse = object;
 export declare type BlogMsgDeleteSentPostResponse = object;
 export declare type BlogMsgDeleteTimedoutPostResponse = object;
+export declare type BlogMsgSendIbcPostResponse = object;
 export declare type BlogMsgUpdatePostResponse = object;
 export declare type BlogMsgUpdateSentPostResponse = object;
 export declare type BlogMsgUpdateTimedoutPostResponse = object;
