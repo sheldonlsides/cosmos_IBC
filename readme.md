@@ -1,6 +1,6 @@
-# Cosmos IBC
+# Cosmos IBC demo
 
-**Cosmos IBC** is a blockchain built using Cosmos SDK and Tendermint and created with [Starport](https://starport.com) to demo the implementation of the Inter-Blockchain Communication protocol (IBC).
+**Cosmos IBC demo** is a blockchain built using Cosmos SDK and Tendermint and created with [Starport](https://starport.com) to demo the implementation of the Inter-Blockchain Communication protocol (IBC).
 
 ## Get started
 
