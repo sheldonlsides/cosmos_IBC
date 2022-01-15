@@ -2,6 +2,7 @@ import { Writer, Reader } from "protobufjs/minimal";
 import { Params } from "../blog/params";
 import { Post } from "../blog/post";
 import { SentPost } from "../blog/sent_post";
+import { TimedoutPost } from "../blog/timedout_post";
 export declare const protobufPackage = "sheldonlsides.planet.blog";
 /** GenesisState defines the blog module's genesis state. */
 export interface GenesisState {
@@ -10,8 +11,10 @@ export interface GenesisState {
     postList: Post[];
     postCount: number;
     sentPostList: SentPost[];
-    /** this line is used by starport scaffolding # genesis/proto/state */
     sentPostCount: number;
+    timedoutPostList: TimedoutPost[];
+    /** this line is used by starport scaffolding # genesis/proto/state */
+    timedoutPostCount: number;
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: Writer): Writer;

@@ -2,6 +2,7 @@
   <div>
     <div class="container">
       <!-- this line is used by starport scaffolding # 4 -->
+		<SpType modulePath="sheldonlsides.planet.blog" moduleType="TimedoutPost"  />
 		<SpType modulePath="sheldonlsides.planet.blog" moduleType="SentPost"  />
 		<SpType modulePath="sheldonlsides.planet.blog" moduleType="Post"  />
     </div>

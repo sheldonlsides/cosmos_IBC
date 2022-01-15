@@ -3,6 +3,7 @@ import { Params } from "../blog/params";
 import { Post } from "../blog/post";
 import { PageRequest, PageResponse } from "../cosmos/base/query/v1beta1/pagination";
 import { SentPost } from "../blog/sent_post";
+import { TimedoutPost } from "../blog/timedout_post";
 export declare const protobufPackage = "sheldonlsides.planet.blog";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
@@ -36,6 +37,19 @@ export interface QueryAllSentPostRequest {
 }
 export interface QueryAllSentPostResponse {
     SentPost: SentPost[];
+    pagination: PageResponse | undefined;
+}
+export interface QueryGetTimedoutPostRequest {
+    id: number;
+}
+export interface QueryGetTimedoutPostResponse {
+    TimedoutPost: TimedoutPost | undefined;
+}
+export interface QueryAllTimedoutPostRequest {
+    pagination: PageRequest | undefined;
+}
+export interface QueryAllTimedoutPostResponse {
+    TimedoutPost: TimedoutPost[];
     pagination: PageResponse | undefined;
 }
 export declare const QueryParamsRequest: {
@@ -108,6 +122,34 @@ export declare const QueryAllSentPostResponse: {
     toJSON(message: QueryAllSentPostResponse): unknown;
     fromPartial(object: DeepPartial<QueryAllSentPostResponse>): QueryAllSentPostResponse;
 };
+export declare const QueryGetTimedoutPostRequest: {
+    encode(message: QueryGetTimedoutPostRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetTimedoutPostRequest;
+    fromJSON(object: any): QueryGetTimedoutPostRequest;
+    toJSON(message: QueryGetTimedoutPostRequest): unknown;
+    fromPartial(object: DeepPartial<QueryGetTimedoutPostRequest>): QueryGetTimedoutPostRequest;
+};
+export declare const QueryGetTimedoutPostResponse: {
+    encode(message: QueryGetTimedoutPostResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetTimedoutPostResponse;
+    fromJSON(object: any): QueryGetTimedoutPostResponse;
+    toJSON(message: QueryGetTimedoutPostResponse): unknown;
+    fromPartial(object: DeepPartial<QueryGetTimedoutPostResponse>): QueryGetTimedoutPostResponse;
+};
+export declare const QueryAllTimedoutPostRequest: {
+    encode(message: QueryAllTimedoutPostRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllTimedoutPostRequest;
+    fromJSON(object: any): QueryAllTimedoutPostRequest;
+    toJSON(message: QueryAllTimedoutPostRequest): unknown;
+    fromPartial(object: DeepPartial<QueryAllTimedoutPostRequest>): QueryAllTimedoutPostRequest;
+};
+export declare const QueryAllTimedoutPostResponse: {
+    encode(message: QueryAllTimedoutPostResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllTimedoutPostResponse;
+    fromJSON(object: any): QueryAllTimedoutPostResponse;
+    toJSON(message: QueryAllTimedoutPostResponse): unknown;
+    fromPartial(object: DeepPartial<QueryAllTimedoutPostResponse>): QueryAllTimedoutPostResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Parameters queries the parameters of the module. */
@@ -120,6 +162,10 @@ export interface Query {
     SentPost(request: QueryGetSentPostRequest): Promise<QueryGetSentPostResponse>;
     /** Queries a list of SentPost items. */
     SentPostAll(request: QueryAllSentPostRequest): Promise<QueryAllSentPostResponse>;
+    /** Queries a TimedoutPost by id. */
+    TimedoutPost(request: QueryGetTimedoutPostRequest): Promise<QueryGetTimedoutPostResponse>;
+    /** Queries a list of TimedoutPost items. */
+    TimedoutPostAll(request: QueryAllTimedoutPostRequest): Promise<QueryAllTimedoutPostResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -129,6 +175,8 @@ export declare class QueryClientImpl implements Query {
     PostAll(request: QueryAllPostRequest): Promise<QueryAllPostResponse>;
     SentPost(request: QueryGetSentPostRequest): Promise<QueryGetSentPostResponse>;
     SentPostAll(request: QueryAllSentPostRequest): Promise<QueryAllSentPostResponse>;
+    TimedoutPost(request: QueryGetTimedoutPostRequest): Promise<QueryGetTimedoutPostResponse>;
+    TimedoutPostAll(request: QueryAllTimedoutPostRequest): Promise<QueryAllTimedoutPostResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

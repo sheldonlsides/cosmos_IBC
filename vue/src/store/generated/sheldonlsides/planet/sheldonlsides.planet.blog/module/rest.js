@@ -208,5 +208,34 @@ export class Api extends HttpClient {
             format: "json",
             ...params,
         });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryTimedoutPostAll
+         * @summary Queries a list of TimedoutPost items.
+         * @request GET:/sheldonlsides/planet/blog/timedout_post
+         */
+        this.queryTimedoutPostAll = (query, params = {}) => this.request({
+            path: `/sheldonlsides/planet/blog/timedout_post`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryTimedoutPost
+         * @summary Queries a TimedoutPost by id.
+         * @request GET:/sheldonlsides/planet/blog/timedout_post/{id}
+         */
+        this.queryTimedoutPost = (id, params = {}) => this.request({
+            path: `/sheldonlsides/planet/blog/timedout_post/${id}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
     }
 }

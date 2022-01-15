@@ -46,6 +46,28 @@ export interface MsgDeleteSentPost {
 }
 export interface MsgDeleteSentPostResponse {
 }
+export interface MsgCreateTimedoutPost {
+    creator: string;
+    title: string;
+    chain: string;
+}
+export interface MsgCreateTimedoutPostResponse {
+    id: number;
+}
+export interface MsgUpdateTimedoutPost {
+    creator: string;
+    id: number;
+    title: string;
+    chain: string;
+}
+export interface MsgUpdateTimedoutPostResponse {
+}
+export interface MsgDeleteTimedoutPost {
+    creator: string;
+    id: number;
+}
+export interface MsgDeleteTimedoutPostResponse {
+}
 export declare const MsgCreatePost: {
     encode(message: MsgCreatePost, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): MsgCreatePost;
@@ -130,6 +152,48 @@ export declare const MsgDeleteSentPostResponse: {
     toJSON(_: MsgDeleteSentPostResponse): unknown;
     fromPartial(_: DeepPartial<MsgDeleteSentPostResponse>): MsgDeleteSentPostResponse;
 };
+export declare const MsgCreateTimedoutPost: {
+    encode(message: MsgCreateTimedoutPost, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateTimedoutPost;
+    fromJSON(object: any): MsgCreateTimedoutPost;
+    toJSON(message: MsgCreateTimedoutPost): unknown;
+    fromPartial(object: DeepPartial<MsgCreateTimedoutPost>): MsgCreateTimedoutPost;
+};
+export declare const MsgCreateTimedoutPostResponse: {
+    encode(message: MsgCreateTimedoutPostResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateTimedoutPostResponse;
+    fromJSON(object: any): MsgCreateTimedoutPostResponse;
+    toJSON(message: MsgCreateTimedoutPostResponse): unknown;
+    fromPartial(object: DeepPartial<MsgCreateTimedoutPostResponse>): MsgCreateTimedoutPostResponse;
+};
+export declare const MsgUpdateTimedoutPost: {
+    encode(message: MsgUpdateTimedoutPost, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateTimedoutPost;
+    fromJSON(object: any): MsgUpdateTimedoutPost;
+    toJSON(message: MsgUpdateTimedoutPost): unknown;
+    fromPartial(object: DeepPartial<MsgUpdateTimedoutPost>): MsgUpdateTimedoutPost;
+};
+export declare const MsgUpdateTimedoutPostResponse: {
+    encode(_: MsgUpdateTimedoutPostResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateTimedoutPostResponse;
+    fromJSON(_: any): MsgUpdateTimedoutPostResponse;
+    toJSON(_: MsgUpdateTimedoutPostResponse): unknown;
+    fromPartial(_: DeepPartial<MsgUpdateTimedoutPostResponse>): MsgUpdateTimedoutPostResponse;
+};
+export declare const MsgDeleteTimedoutPost: {
+    encode(message: MsgDeleteTimedoutPost, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteTimedoutPost;
+    fromJSON(object: any): MsgDeleteTimedoutPost;
+    toJSON(message: MsgDeleteTimedoutPost): unknown;
+    fromPartial(object: DeepPartial<MsgDeleteTimedoutPost>): MsgDeleteTimedoutPost;
+};
+export declare const MsgDeleteTimedoutPostResponse: {
+    encode(_: MsgDeleteTimedoutPostResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteTimedoutPostResponse;
+    fromJSON(_: any): MsgDeleteTimedoutPostResponse;
+    toJSON(_: MsgDeleteTimedoutPostResponse): unknown;
+    fromPartial(_: DeepPartial<MsgDeleteTimedoutPostResponse>): MsgDeleteTimedoutPostResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     CreatePost(request: MsgCreatePost): Promise<MsgCreatePostResponse>;
@@ -137,8 +201,11 @@ export interface Msg {
     DeletePost(request: MsgDeletePost): Promise<MsgDeletePostResponse>;
     CreateSentPost(request: MsgCreateSentPost): Promise<MsgCreateSentPostResponse>;
     UpdateSentPost(request: MsgUpdateSentPost): Promise<MsgUpdateSentPostResponse>;
-    /** this line is used by starport scaffolding # proto/tx/rpc */
     DeleteSentPost(request: MsgDeleteSentPost): Promise<MsgDeleteSentPostResponse>;
+    CreateTimedoutPost(request: MsgCreateTimedoutPost): Promise<MsgCreateTimedoutPostResponse>;
+    UpdateTimedoutPost(request: MsgUpdateTimedoutPost): Promise<MsgUpdateTimedoutPostResponse>;
+    /** this line is used by starport scaffolding # proto/tx/rpc */
+    DeleteTimedoutPost(request: MsgDeleteTimedoutPost): Promise<MsgDeleteTimedoutPostResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
@@ -149,6 +216,9 @@ export declare class MsgClientImpl implements Msg {
     CreateSentPost(request: MsgCreateSentPost): Promise<MsgCreateSentPostResponse>;
     UpdateSentPost(request: MsgUpdateSentPost): Promise<MsgUpdateSentPostResponse>;
     DeleteSentPost(request: MsgDeleteSentPost): Promise<MsgDeleteSentPostResponse>;
+    CreateTimedoutPost(request: MsgCreateTimedoutPost): Promise<MsgCreateTimedoutPostResponse>;
+    UpdateTimedoutPost(request: MsgUpdateTimedoutPost): Promise<MsgUpdateTimedoutPostResponse>;
+    DeleteTimedoutPost(request: MsgDeleteTimedoutPost): Promise<MsgDeleteTimedoutPostResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

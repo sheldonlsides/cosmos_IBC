@@ -6,10 +6,16 @@ export interface BlogMsgCreateSentPostResponse {
     /** @format uint64 */
     id?: string;
 }
+export interface BlogMsgCreateTimedoutPostResponse {
+    /** @format uint64 */
+    id?: string;
+}
 export declare type BlogMsgDeletePostResponse = object;
 export declare type BlogMsgDeleteSentPostResponse = object;
+export declare type BlogMsgDeleteTimedoutPostResponse = object;
 export declare type BlogMsgUpdatePostResponse = object;
 export declare type BlogMsgUpdateSentPostResponse = object;
+export declare type BlogMsgUpdateTimedoutPostResponse = object;
 /**
  * Params defines the parameters for the module.
  */
@@ -47,11 +53,27 @@ export interface BlogQueryAllSentPostResponse {
      */
     pagination?: V1Beta1PageResponse;
 }
+export interface BlogQueryAllTimedoutPostResponse {
+    TimedoutPost?: BlogTimedoutPost[];
+    /**
+     * PageResponse is to be embedded in gRPC response messages where the
+     * corresponding request message has used PageRequest.
+     *
+     *  message SomeResponse {
+     *          repeated Bar results = 1;
+     *          PageResponse page = 2;
+     *  }
+     */
+    pagination?: V1Beta1PageResponse;
+}
 export interface BlogQueryGetPostResponse {
     Post?: BlogPost;
 }
 export interface BlogQueryGetSentPostResponse {
     SentPost?: BlogSentPost;
+}
+export interface BlogQueryGetTimedoutPostResponse {
+    TimedoutPost?: BlogTimedoutPost;
 }
 /**
  * QueryParamsResponse is response type for the Query/Params RPC method.
@@ -64,6 +86,13 @@ export interface BlogSentPost {
     /** @format uint64 */
     id?: string;
     postID?: string;
+    title?: string;
+    chain?: string;
+    creator?: string;
+}
+export interface BlogTimedoutPost {
+    /** @format uint64 */
+    id?: string;
     title?: string;
     chain?: string;
     creator?: string;
@@ -248,5 +277,29 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @request GET:/sheldonlsides/planet/blog/sent_post/{id}
      */
     querySentPost: (id: string, params?: RequestParams) => Promise<HttpResponse<BlogQueryGetSentPostResponse, RpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryTimedoutPostAll
+     * @summary Queries a list of TimedoutPost items.
+     * @request GET:/sheldonlsides/planet/blog/timedout_post
+     */
+    queryTimedoutPostAll: (query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.countTotal"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<HttpResponse<BlogQueryAllTimedoutPostResponse, RpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryTimedoutPost
+     * @summary Queries a TimedoutPost by id.
+     * @request GET:/sheldonlsides/planet/blog/timedout_post/{id}
+     */
+    queryTimedoutPost: (id: string, params?: RequestParams) => Promise<HttpResponse<BlogQueryGetTimedoutPostResponse, RpcStatus>>;
 }
 export {};
