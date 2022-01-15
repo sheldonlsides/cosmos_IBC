@@ -4,29 +4,29 @@ import { StdFee } from "@cosmjs/launchpad";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
-import { MsgDeleteSentPost } from "./types/blog/tx";
-import { MsgCreateTimedoutPost } from "./types/blog/tx";
-import { MsgDeleteTimedoutPost } from "./types/blog/tx";
-import { MsgCreateSentPost } from "./types/blog/tx";
-import { MsgUpdatePost } from "./types/blog/tx";
-import { MsgCreatePost } from "./types/blog/tx";
 import { MsgUpdateSentPost } from "./types/blog/tx";
 import { MsgSendIbcPost } from "./types/blog/tx";
-import { MsgUpdateTimedoutPost } from "./types/blog/tx";
+import { MsgUpdatePost } from "./types/blog/tx";
+import { MsgDeleteTimedoutPost } from "./types/blog/tx";
+import { MsgCreateSentPost } from "./types/blog/tx";
+import { MsgCreateTimedoutPost } from "./types/blog/tx";
 import { MsgDeletePost } from "./types/blog/tx";
+import { MsgCreatePost } from "./types/blog/tx";
+import { MsgDeleteSentPost } from "./types/blog/tx";
+import { MsgUpdateTimedoutPost } from "./types/blog/tx";
 
 
 const types = [
-  ["/sheldonlsides.planet.blog.MsgDeleteSentPost", MsgDeleteSentPost],
-  ["/sheldonlsides.planet.blog.MsgCreateTimedoutPost", MsgCreateTimedoutPost],
-  ["/sheldonlsides.planet.blog.MsgDeleteTimedoutPost", MsgDeleteTimedoutPost],
-  ["/sheldonlsides.planet.blog.MsgCreateSentPost", MsgCreateSentPost],
-  ["/sheldonlsides.planet.blog.MsgUpdatePost", MsgUpdatePost],
-  ["/sheldonlsides.planet.blog.MsgCreatePost", MsgCreatePost],
   ["/sheldonlsides.planet.blog.MsgUpdateSentPost", MsgUpdateSentPost],
   ["/sheldonlsides.planet.blog.MsgSendIbcPost", MsgSendIbcPost],
-  ["/sheldonlsides.planet.blog.MsgUpdateTimedoutPost", MsgUpdateTimedoutPost],
+  ["/sheldonlsides.planet.blog.MsgUpdatePost", MsgUpdatePost],
+  ["/sheldonlsides.planet.blog.MsgDeleteTimedoutPost", MsgDeleteTimedoutPost],
+  ["/sheldonlsides.planet.blog.MsgCreateSentPost", MsgCreateSentPost],
+  ["/sheldonlsides.planet.blog.MsgCreateTimedoutPost", MsgCreateTimedoutPost],
   ["/sheldonlsides.planet.blog.MsgDeletePost", MsgDeletePost],
+  ["/sheldonlsides.planet.blog.MsgCreatePost", MsgCreatePost],
+  ["/sheldonlsides.planet.blog.MsgDeleteSentPost", MsgDeleteSentPost],
+  ["/sheldonlsides.planet.blog.MsgUpdateTimedoutPost", MsgUpdateTimedoutPost],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -59,16 +59,16 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
 
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
-    msgDeleteSentPost: (data: MsgDeleteSentPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgDeleteSentPost", value: MsgDeleteSentPost.fromPartial( data ) }),
-    msgCreateTimedoutPost: (data: MsgCreateTimedoutPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgCreateTimedoutPost", value: MsgCreateTimedoutPost.fromPartial( data ) }),
-    msgDeleteTimedoutPost: (data: MsgDeleteTimedoutPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgDeleteTimedoutPost", value: MsgDeleteTimedoutPost.fromPartial( data ) }),
-    msgCreateSentPost: (data: MsgCreateSentPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgCreateSentPost", value: MsgCreateSentPost.fromPartial( data ) }),
-    msgUpdatePost: (data: MsgUpdatePost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgUpdatePost", value: MsgUpdatePost.fromPartial( data ) }),
-    msgCreatePost: (data: MsgCreatePost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgCreatePost", value: MsgCreatePost.fromPartial( data ) }),
     msgUpdateSentPost: (data: MsgUpdateSentPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgUpdateSentPost", value: MsgUpdateSentPost.fromPartial( data ) }),
     msgSendIbcPost: (data: MsgSendIbcPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgSendIbcPost", value: MsgSendIbcPost.fromPartial( data ) }),
-    msgUpdateTimedoutPost: (data: MsgUpdateTimedoutPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgUpdateTimedoutPost", value: MsgUpdateTimedoutPost.fromPartial( data ) }),
+    msgUpdatePost: (data: MsgUpdatePost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgUpdatePost", value: MsgUpdatePost.fromPartial( data ) }),
+    msgDeleteTimedoutPost: (data: MsgDeleteTimedoutPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgDeleteTimedoutPost", value: MsgDeleteTimedoutPost.fromPartial( data ) }),
+    msgCreateSentPost: (data: MsgCreateSentPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgCreateSentPost", value: MsgCreateSentPost.fromPartial( data ) }),
+    msgCreateTimedoutPost: (data: MsgCreateTimedoutPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgCreateTimedoutPost", value: MsgCreateTimedoutPost.fromPartial( data ) }),
     msgDeletePost: (data: MsgDeletePost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgDeletePost", value: MsgDeletePost.fromPartial( data ) }),
+    msgCreatePost: (data: MsgCreatePost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgCreatePost", value: MsgCreatePost.fromPartial( data ) }),
+    msgDeleteSentPost: (data: MsgDeleteSentPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgDeleteSentPost", value: MsgDeleteSentPost.fromPartial( data ) }),
+    msgUpdateTimedoutPost: (data: MsgUpdateTimedoutPost): EncodeObject => ({ typeUrl: "/sheldonlsides.planet.blog.MsgUpdateTimedoutPost", value: MsgUpdateTimedoutPost.fromPartial( data ) }),
     
   };
 };

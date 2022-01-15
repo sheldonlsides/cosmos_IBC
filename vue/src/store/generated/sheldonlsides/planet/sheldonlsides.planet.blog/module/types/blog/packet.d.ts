@@ -11,6 +11,7 @@ export interface NoData {
 export interface IbcPostPacketData {
     title: string;
     content: string;
+    creator: string;
 }
 /** IbcPostPacketAck defines a struct for the packet acknowledgment */
 export interface IbcPostPacketAck {
