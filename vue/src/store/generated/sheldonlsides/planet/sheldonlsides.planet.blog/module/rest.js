@@ -179,5 +179,34 @@ export class Api extends HttpClient {
             format: "json",
             ...params,
         });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QuerySentPostAll
+         * @summary Queries a list of SentPost items.
+         * @request GET:/sheldonlsides/planet/blog/sent_post
+         */
+        this.querySentPostAll = (query, params = {}) => this.request({
+            path: `/sheldonlsides/planet/blog/sent_post`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QuerySentPost
+         * @summary Queries a SentPost by id.
+         * @request GET:/sheldonlsides/planet/blog/sent_post/{id}
+         */
+        this.querySentPost = (id, params = {}) => this.request({
+            path: `/sheldonlsides/planet/blog/sent_post/${id}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
     }
 }

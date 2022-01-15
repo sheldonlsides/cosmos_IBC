@@ -2,6 +2,7 @@ import { Reader, Writer } from "protobufjs/minimal";
 import { Params } from "../blog/params";
 import { Post } from "../blog/post";
 import { PageRequest, PageResponse } from "../cosmos/base/query/v1beta1/pagination";
+import { SentPost } from "../blog/sent_post";
 export declare const protobufPackage = "sheldonlsides.planet.blog";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
@@ -22,6 +23,19 @@ export interface QueryAllPostRequest {
 }
 export interface QueryAllPostResponse {
     Post: Post[];
+    pagination: PageResponse | undefined;
+}
+export interface QueryGetSentPostRequest {
+    id: number;
+}
+export interface QueryGetSentPostResponse {
+    SentPost: SentPost | undefined;
+}
+export interface QueryAllSentPostRequest {
+    pagination: PageRequest | undefined;
+}
+export interface QueryAllSentPostResponse {
+    SentPost: SentPost[];
     pagination: PageResponse | undefined;
 }
 export declare const QueryParamsRequest: {
@@ -66,6 +80,34 @@ export declare const QueryAllPostResponse: {
     toJSON(message: QueryAllPostResponse): unknown;
     fromPartial(object: DeepPartial<QueryAllPostResponse>): QueryAllPostResponse;
 };
+export declare const QueryGetSentPostRequest: {
+    encode(message: QueryGetSentPostRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetSentPostRequest;
+    fromJSON(object: any): QueryGetSentPostRequest;
+    toJSON(message: QueryGetSentPostRequest): unknown;
+    fromPartial(object: DeepPartial<QueryGetSentPostRequest>): QueryGetSentPostRequest;
+};
+export declare const QueryGetSentPostResponse: {
+    encode(message: QueryGetSentPostResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetSentPostResponse;
+    fromJSON(object: any): QueryGetSentPostResponse;
+    toJSON(message: QueryGetSentPostResponse): unknown;
+    fromPartial(object: DeepPartial<QueryGetSentPostResponse>): QueryGetSentPostResponse;
+};
+export declare const QueryAllSentPostRequest: {
+    encode(message: QueryAllSentPostRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllSentPostRequest;
+    fromJSON(object: any): QueryAllSentPostRequest;
+    toJSON(message: QueryAllSentPostRequest): unknown;
+    fromPartial(object: DeepPartial<QueryAllSentPostRequest>): QueryAllSentPostRequest;
+};
+export declare const QueryAllSentPostResponse: {
+    encode(message: QueryAllSentPostResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllSentPostResponse;
+    fromJSON(object: any): QueryAllSentPostResponse;
+    toJSON(message: QueryAllSentPostResponse): unknown;
+    fromPartial(object: DeepPartial<QueryAllSentPostResponse>): QueryAllSentPostResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Parameters queries the parameters of the module. */
@@ -74,6 +116,10 @@ export interface Query {
     Post(request: QueryGetPostRequest): Promise<QueryGetPostResponse>;
     /** Queries a list of Post items. */
     PostAll(request: QueryAllPostRequest): Promise<QueryAllPostResponse>;
+    /** Queries a SentPost by id. */
+    SentPost(request: QueryGetSentPostRequest): Promise<QueryGetSentPostResponse>;
+    /** Queries a list of SentPost items. */
+    SentPostAll(request: QueryAllSentPostRequest): Promise<QueryAllSentPostResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -81,6 +127,8 @@ export declare class QueryClientImpl implements Query {
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
     Post(request: QueryGetPostRequest): Promise<QueryGetPostResponse>;
     PostAll(request: QueryAllPostRequest): Promise<QueryAllPostResponse>;
+    SentPost(request: QueryGetSentPostRequest): Promise<QueryGetSentPostResponse>;
+    SentPostAll(request: QueryAllSentPostRequest): Promise<QueryAllSentPostResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

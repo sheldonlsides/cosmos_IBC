@@ -1,14 +1,17 @@
 import { Writer, Reader } from "protobufjs/minimal";
 import { Params } from "../blog/params";
 import { Post } from "../blog/post";
+import { SentPost } from "../blog/sent_post";
 export declare const protobufPackage = "sheldonlsides.planet.blog";
 /** GenesisState defines the blog module's genesis state. */
 export interface GenesisState {
     params: Params | undefined;
     portId: string;
     postList: Post[];
-    /** this line is used by starport scaffolding # genesis/proto/state */
     postCount: number;
+    sentPostList: SentPost[];
+    /** this line is used by starport scaffolding # genesis/proto/state */
+    sentPostCount: number;
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: Writer): Writer;
