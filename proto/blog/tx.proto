@@ -10,13 +10,13 @@ option go_package = "github.com/sheldonlsides/planet/x/blog/types";
 
 // Msg defines the Msg service.
 service Msg {
-    rpc CreatePost(MsgCreatePost) returns (MsgCreatePostResponse);
+  rpc CreatePost(MsgCreatePost) returns (MsgCreatePostResponse);
   rpc UpdatePost(MsgUpdatePost) returns (MsgUpdatePostResponse);
   rpc DeletePost(MsgDeletePost) returns (MsgDeletePostResponse);
-rpc CreateSentPost(MsgCreateSentPost) returns (MsgCreateSentPostResponse);
+  rpc CreateSentPost(MsgCreateSentPost) returns (MsgCreateSentPostResponse);
   rpc UpdateSentPost(MsgUpdateSentPost) returns (MsgUpdateSentPostResponse);
   rpc DeleteSentPost(MsgDeleteSentPost) returns (MsgDeleteSentPostResponse);
-rpc CreateTimedoutPost(MsgCreateTimedoutPost) returns (MsgCreateTimedoutPostResponse);
+  rpc CreateTimedoutPost(MsgCreateTimedoutPost) returns (MsgCreateTimedoutPostResponse);
   rpc UpdateTimedoutPost(MsgUpdateTimedoutPost) returns (MsgUpdateTimedoutPostResponse);
   rpc DeleteTimedoutPost(MsgDeleteTimedoutPost) returns (MsgDeleteTimedoutPostResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
